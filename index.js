@@ -115,8 +115,8 @@ app.get('/base64decode/:dados' , (req , res) => {
 }); 
 
 
-app.listen( 3015,()=>{
-	console.log('Api Rodando porta  3015')
+app.listen( 3005,()=>{
+	console.log('Api Rodando porta  3005')
 })
 
 
