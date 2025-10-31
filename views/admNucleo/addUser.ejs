@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="/assets/css/main.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <style>
+        .content-wrapper {
+            position: relative;
+            background-color: #f7f7f7;
+            background-color: #f2f2f2;
+            background-color: #f1f1f1;
+            margin-left: 200px;
+            padding: 0 15px 60px 15px;
+                padding-top: 0px;
+            -webkit-transition: margin .2s ease-in-out;
+            -o-transition: margin .2s ease-in-out;
+            transition: margin .2s ease-in-out;
+            min-height: 1000px;
+            }
+        .page-footer {
+              position: absolute;
+              left: 10px;
+              bottom: 0;
+              width: 100%;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: justify;
+              -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+              justify-content: space-between;
+              -webkit-box-align: center;
+              -webkit-align-items: center;
+              -ms-flex-align: center;
+              align-items: center;
+              padding: 10px 15px;
+              background-color: #fff;
+            }
+    </style>
+</head>
+
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <header class="header">
+            <div class="page-brand">
+                <%- include('./../partials/sidebarAdminNucleo.ejs') %>
+            </div>
+            <div class="flexbox flex-1">
+                <!-- START TOP-LEFT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    <li>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+                    </li>
+                    <li>
+                       
+                    </li>
+                </ul>
+                <!-- END TOP-LEFT TOOLBAR-->
+                <!-- START TOP-RIGHT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    
+                </ul>
+                <!-- END TOP-RIGHT TOOLBAR-->
+            </div>
+        </header>
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
+        <nav class="page-sidebar" id="sidebar">
+            <div id="sidebar-collapse">
+                <div class="admin-block d-flex">
+                    <div>
+                        <img src="/assets/img/admin-avatar.png" width="45px" />
+                    </div>
+                    <div class="admin-info">
+                        <div class="font-strong"><%= user %></div><small>Administrator</small></div>
+                </div>
+                <%- include('./../partials/sidebar.ejs') %>
+            </div>
+        </nav>
+        <!-- END SIDEBAR-->
+        <div class="content-wrapper">
+            <!-- START PAGE CONTENT-->
+            <div class="page-content fade-in-up">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title">Cadastrar Usuário</div>                            
+                        </div>
+                        <div class="ibox-body">
+                            <form action="/adm/addUser/" method="post">
+                                <input type="hidden" class="form-control" name="uid_usuario" value="<%= uid_usuario %>">
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Nome</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="descricao" id="descricao">
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">CPF</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control cpf" name="cpf" id="cpf">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control cpf" name="email">
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="update ml-auto mr-auto">
+                                    <button type="submit" id="but_salvar" class="btn btn-primary btn-round">Cadastrar</button>
+                                    <button type="reset" class="btn btn-warning btn-round">Limpar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title">Usuários Cadastrados</div>                            
+                        </div>
+                        <div class="ibox-body">
+                            <table class="table datatable" id="example1">
+                                <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th style="width: 1%;"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% Users.forEach(dados=>{ %>
+                                <tr>
+                                    <td><%= dados.descricao %></td>
+                                    <% if (dados.id_usuario=="1"){ %>
+                                        <td></td>
+                                    <% }else{ %>
+                                        <td><a href="/adm/remUsers/<%= dados.id_usuario %>/<%= uid_usuario %>">Excluir</a></td>
+                                    <% } %>
+                                </tr>
+                                <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+            <!-- END PAGE CONTENT-->
+            <%- include('./../partials/footer.ejs') %>
+        </div>
+    </div>
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <div class="preloader-backdrop">
+        <div class="page-preloader">Loading</div>
+    </div>
+    
+    <script src="/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="/assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+    <script src="/assets/js/app.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js" type="text/javascript"></script>
+    <!--<script src="/ead/assets/js/scripts/dashboard_1_demo.js" type="text/javascript"></script>-->
+    <script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');
+    })
+    
+        $(function () {
+            
+            $('.datatable').DataTable({
+                'paging'      : true,
+                'lengthChange': false,
+                'searching'   : true,
+                'ordering'    : false,
+                'info'        : false,
+                'autoWidth'   : false,
+              language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.0.3/i18n/pt-PT.json'
+              }
+            })
+    
+        })
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    
+    <link href="/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="/assets/css/main.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <style>
+        .content-wrapper {
+            position: relative;
+            background-color: #f7f7f7;
+            background-color: #f2f2f2;
+            background-color: #f1f1f1;
+            margin-left: 220px;
+            padding: 0 15px 60px 15px;
+                padding-top: 0px;
+            -webkit-transition: margin .2s ease-in-out;
+            -o-transition: margin .2s ease-in-out;
+            transition: margin .2s ease-in-out;
+            min-height: 1000px;
+            }
+        #lineModalLabel{
+ 
+            font-family: "Roboto Condensed", sans-serif;
+            font-optical-sizing: auto;
+            /*font-weight: 900;*/
+            font-style: normal;
+
+        }
+    </style>
+</head>
+
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <header class="header">
+            <div class="page-brand">
+                <%- include('./../partials/logo.ejs') %>
+            </div>
+            <div class="flexbox flex-1">
+                <!-- START TOP-LEFT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    <li>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+                    </li>
+                    <li>
+                       
+                    </li>
+                </ul>
+                <!-- END TOP-LEFT TOOLBAR-->
+                <!-- START TOP-RIGHT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    
+                </ul>
+                <!-- END TOP-RIGHT TOOLBAR-->
+            </div>
+        </header>
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
+        <nav class="page-sidebar" id="sidebar">
+            <div id="sidebar-collapse">
+                <div class="admin-block d-flex">
+                    <div>
+                        <img src="/assets/img/admin-avatar.png" width="45px" />
+                    </div>
+                    <div class="admin-info">
+                        <div class="font-strong"><%= user %></div><small>Administrator</small></div>
+                </div>
+                <%- include('./../partials/sidebar.ejs') %>
+               
+            </div>
+        </nav>
+        <!-- END SIDEBAR-->
+        <div class="content-wrapper">
+            <!-- START PAGE CONTENT-->
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ibox bg-success color-white widget-stat">
+                            <div class="ibox-body">
+                                <h2 class="m-b-5 font-strong"><%= qtdeAlunos %></h2>
+                                <div class="m-b-5">ALUNOS CADASTADOS</div><i class="ti-bar-chart widget-stat-icon"></i>
+                                <!--<div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ibox bg-info color-white widget-stat">
+                            <div class="ibox-body">
+                                <h2 class="m-b-5 font-strong"><%= qtdeAulas %></h2>
+                                <div class="m-b-5">AULAS CADASTADAS</div><i class="ti-bar-chart widget-stat-icon"></i>
+                                <!--<div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ibox bg-danger color-white widget-stat">
+                            <div class="ibox-body">
+                                <h2 class="m-b-5 font-strong"><%= qtdeAlunosBloqueados %></h2>
+                                <div class="m-b-5">ALUNOS BLOQUEADOS</div><i class="ti-bar-chart widget-stat-icon"></i>
+                                <!--<div><i class="fa fa-level-up m-r-5"></i><small>22% higher</small></div>-->
+                            </div>
+                        </div>
+                    </div>
+					<!--
+                    <div class="col-lg-3 col-md-6">
+                        <div class="ibox bg-warning color-white widget-stat">
+                            <div class="ibox-body">
+                                <h2 class="m-b-5 font-strong"><%= qtdeAlunos %></h2>
+                                <div class="m-b-5">CONTAS A PAGAR MÊS</div><i class="fa fa-money widget-stat-icon"></i>
+                                <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div> 
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Atividades no Sistema</div>                            
+                            </div>
+                            <div class="ibox-body">
+                                <table class="table datatable" >
+                                    <thead>
+                                      <tr>
+                                        <th>Nome</th>
+                                        <th>Data</th>
+                                        <th>Hora</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                          <% logs.forEach(dados=> { %>
+                                        <tr>
+                                            <td><%= dados.nome %></td>
+                                            <td><%= dados.data %></td>
+                                            <td><%= dados.hora %></td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>                       
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Alunos Cadastrados</div>                            
+                            </div>
+                            <div class="ibox-body">
+                                <table class="table datatable" >
+                                    <thead>
+                                      <tr>
+                                        <th>Nome</th>
+                                        <th>Telefone</th>
+                                        <th>Módulo</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% alunos.forEach(alunos=>{ %>
+                                        <tr>
+                                            <td><%= alunos.nome %></td>
+                                            <td><%= alunos.celular %></td>
+                                            <td><%= alunos.modulo %></td>
+                                            
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>                       
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Aulas Cadastradas</div>                            
+                            </div>
+                            <div class="ibox-body">
+                                <table class="table datatable" >
+                                    <thead>
+                                      <tr>
+                                        <th>Aula</th>
+                                        <th>Modulo</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                          <% aulas_cadastradas.forEach(dados=> { %>
+                                        <tr>
+                                            <td><%= dados.aulas %></td>
+                                            <td><%= dados.modulo %></td>
+                                            
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                
+            </div>
+            <!-- END PAGE CONTENT-->
+            <%- include('./../partials/footer.ejs') %>
+        </div>
+    </div>
+    <!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h3 class="modal-title" id="lineModalLabel">Busca Aluno por CPF</h3>
+          </div>
+          <div class="modal-body">
+              
+              <!-- content goes here -->
+              <form action="/ead/adm/busca_aluno_cpf" method="post">
+                <input type="hidden"  name="uid_usuario" value="<%= uid_usuario %>">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">CPF</label>
+                  <input type="text" class="form-control" name="cpf" id="cpf" placeholder="">
+                </div>                
+                <button type="submit" class="btn btn-default">Buscar</button>
+              </form>
+  
+          </div>
+          <div class="modal-footer">
+              <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                  <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+    
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <div class="preloader-backdrop">
+        <div class="page-preloader">Loading</div>
+    </div>
+    <% if(abrir_aviso==true){ %>
+    <script>
+        swal("<%= mensagem_modal %>", {
+            buttons: false,
+            timer: 2000,
+        });
+    </script>
+    <% } %>
+    <script src="/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/chart.js/dist/Chart.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <script src="/assets/vendors/jvectormap/jquery-jvectormap-us-aea-en.js" type="text/javascript"></script>
+    <script src="/assets/js/app.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#cpf').mask('000.000.000-00');
+        })
+      </script>
+</body>
+
+</html>

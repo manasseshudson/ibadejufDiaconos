@@ -1,0 +1,162 @@
+<div class="sidebar-header">
+	<a href="/adm/principal/<%= uid_usuario %>"><img class="main-logo" src="/img/logo/logoDiaconos.png" alt="" /></a>
+	<strong><a href="index.html"><img src="/img/logo/logosn.png" alt="" /></a></strong>
+</div>
+<div class="left-custom-menu-adp-wrap comment-scrollbar">
+	<nav class="sidebar-nav left-sidebar-menu-pro">
+		<ul class="metismenu" id="menu1">
+			<li>
+				<a title="Landing Page" href="/adm/principal/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<span class="educate-icon educate-home icon-wrap"></span>
+					<span class="mini-click-non">Principal</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/adm/alunos_aniversariantes_mes/<%= uid_usuario %>/0"
+					aria-expanded="false" id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px;">Aniversariantes</span></a>
+			</li>
+			<!--
+			<li>
+				<a title="Landing Page" href="/adm/alunosBl/<%= uid_usuario %>"
+					aria-expanded="false" id="link_principal">
+					
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px; color:red">Bloqueados</span></a>
+			</li>
+		-->
+			<li>
+				<a class="has-arrow" href="">
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+					<span class="mini-click-non">Núcleos</span>
+				</a>
+				<ul class="submenu-angle" aria-expanded="true">
+					<% nucleos.forEach(nucleos=> { %>
+					<li><a href="/adm/alunos_nucleo/<%= uid_usuario %>/<%= nucleos.id_nucleo %>"><span
+								class="mini-sub-pro"><%= nucleos.descricao %></span></a></li>
+					<% }) %>
+				</ul>
+			</li>
+			<li>
+				<a title="Landing Page" href="/adm/alunos/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px">Alunos</span></a>
+			</li>
+			
+			<!--
+			<li>
+				<a title="Landing Page" href="/adm/alunos/<%= uid_usuario %>" aria-expanded="false" id="link_principal">
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<span class="mini-click-non" style="margin-left:10px;">Alunos</span></a>
+			</li>
+			
+			<li>
+				<a title="Landing Page" href="/adm/alunos_1_basico/<%= uid_usuario %>" aria-expanded="false" id="link_principal">
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<span class="mini-click-non" style="margin-left:10px;">Alunos 1º Ano</span></a>
+			</li>
+			
+			<li>
+				<a title="Landing Page" href="/adm/alunos_2_basico/<%= uid_usuario %>" aria-expanded="false" id="link_principal">
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<span class="mini-click-non " style="margin-left:10px;">Alunos 2º Ano</span></a>
+			</li>
+			
+			<li>
+				<a title="Landing Page" href="/adm/alunos_medio/<%= uid_usuario %>" aria-expanded="false" id="link_principal">
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<span class="mini-click-non" style="margin-left:10px;">Alunos Médio</span></a>
+			</li>
+			-->
+
+			<li>
+				<a title="Landing Page" href="/adm/addMaterias/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px;">Matérias</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/adm/addProvas/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px;">Provas</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/adm/addAulas/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-video-camera" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px;">Aulas</span></a>
+			</li>
+			<!--
+			<li>
+				<a title="Landing Page" href="/adm/addModalidades/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px">Modalidades</span></a>
+			</li>-->
+
+			<li>
+				<a title="Landing Page" href="/adm/addNucleo/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px">Adicionar Núcleo</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/loginv2" aria-expanded="false" id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px">Sair</span></a>
+			</li>
+
+			<!--
+			<li >
+				<a class="has-arrow" href="index.html">
+					   <span class="educate-icon educate-home icon-wrap"></span>
+					   <span class="mini-click-non">Cadastros</span>
+					</a>
+				<ul class="submenu-angle" aria-expanded="true">
+					<li><a title="Cadastrar Alunos" href="/adm/addAluno/<%= uid_usuario %>" ><span class="mini-sub-pro">Alunos</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/addMaterias/<%= uid_usuario %>" ><span class="mini-sub-pro">Matérias</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/addAulas/<%= uid_usuario %>" ><span class="mini-sub-pro">Aulas</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/addModalidades/<%= uid_usuario %>" ><span class="mini-sub-pro">Modalidades</span></a></li>
+				</ul>
+			</li>-->
+			<!--
+			<li >
+				<a class="has-arrow" href="index.html">
+					   <span class="educate-icon educate-home icon-wrap"></span>
+					   <span class="mini-click-non">Listagem</span>
+					</a>
+				<ul class="submenu-angle" aria-expanded="true">
+					<li><a title="Cadastrar Alunos" href="/adm/alunos/<%= uid_usuario %>" ><span class="mini-sub-pro">Alunos</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/alunos_1_basico/<%= uid_usuario %>" ><span class="mini-sub-pro">Alunos 1º Ano</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/alunos_2_basico/<%= uid_usuario %>" ><span class="mini-sub-pro">Alunos 2º Ano</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/alunos_medio/<%= uid_usuario %>" ><span class="mini-sub-pro">Alunos Médio</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/aulas/<%= uid_usuario %>" ><span class="mini-sub-pro">Aulas Cadastradas</span></a></li>
+					<li><a title="Cadastrar Alunos" href="/adm/modalidade/<%= uid_usuario %>" ><span class="mini-sub-pro">Modalidades</span></a></li>					
+				</ul>
+			</li>
+			-->
+		</ul>
+	</nav>
+</div>
+<script>
+
+
+</script>

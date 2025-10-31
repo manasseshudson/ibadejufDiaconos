@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formação Node.js - Udemy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .video-gradient {
+            background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5, #2196f3);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .play-button {
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 px-6 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <span class="text-purple-400 text-2xl font-bold">CURSO PARA DIÁCONOS E AUXLIARES</span>
+                    <div class="h-6 w-px bg-gray-600"></div>
+                    <!--<span class="text-white font-medium">Formação Node.js</span>-->
+                </div>
+            </div>
+            <!--<div class="flex items-center space-x-4">
+                <button class="flex items-center space-x-2 px-3 py-2 rounded hover:bg-gray-800">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <span class="text-sm">Deixe uma classificação</span>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-sm font-bold">M</div>
+                    <span class="text-sm">Seu progresso</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </div>
+                <button class="px-4 py-2 bg-gray-800 rounded text-sm hover:bg-gray-700">
+                    Compartilhar
+                </button>
+                <button class="p-2 hover:bg-gray-800 rounded">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>-->
+        </div>
+    </header>
+
+    <div class="flex h-screen">
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Video Player -->
+            <div class="relative bg-black flex-1">
+                <!-- YouTube Video Container -->
+                <div id="video-container" class="w-full h-full hidden">
+                    <iframe id="youtube-frame" 
+                            class="w-full h-full" 
+                            src="" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <!-- Default Placeholder -->
+                <div id="video-placeholder" class="video-gradient w-full h-full flex items-center justify-center relative overflow-hidden">
+                    <!-- Decorative circles -->
+                    <div class="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full"></div>
+                    <div class="absolute top-40 right-32 w-48 h-48 border border-white/10 rounded-full"></div>
+                    <div class="absolute bottom-32 left-40 w-64 h-64 border border-white/5 rounded-full"></div>
+                    <div class="absolute top-10 right-10 w-16 h-16 border-2 border-white/30 rounded-full"></div>
+                    
+                    <!-- Play button and content -->
+                    <div class="relative z-10 text-center">
+                        <button class="play-button w-20 h-20 bg-black bg-opacity-70 rounded-full flex items-center justify-center mb-8 mx-auto hover:bg-opacity-90">
+                            <i class="fas fa-play text-white text-2xl ml-1"></i>
+                        </button>
+                        <h1 id="video-title" class="text-5xl font-bold mb-4">CURSO PARA DIÁCONOS</h1>
+                        <p id="video-subtitle" class="text-xl text-white/90">Clique em uma aula para começar</p>
+                    </div>
+                </div>
+
+                <!-- Video Controls -->
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                    <div class="flex items-center space-x-4">
+                        <button class="text-white hover:text-purple-400">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="text-white hover:text-purple-400">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <span class="text-sm">0:00 / 0:00</span>
+                        <div class="flex-1 bg-gray-600 h-1 rounded">
+                            <div class="bg-purple-500 h-1 rounded" style="width: 0%"></div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-white hover:text-purple-400">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-white hover:text-purple-400">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            <button class="text-white hover:text-purple-400">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Info -->
+            <div class="bg-gray-900 p-6 border-t border-gray-700">
+                <div class="flex space-x-8 text-sm text-gray-400 mb-4">
+                    <button class="text-white border-b-2 border-purple-500 pb-2">Visão geral</button>
+                    <button class="hover:text-white">Perguntas e respostas</button>
+                    <button class="hover:text-white">Observações</button>
+                    <button class="hover:text-white">Anúncios</button>
+                    <button class="hover:text-white">Avaliações</button>
+                    <button class="hover:text-white">Ferramentas de aprendizado</button>
+                </div>
+                <h2 class="text-xl font-bold mb-2">Aprenda a criar qualquer sistema web, com Node.js e Javascript na prática, domine as principais tecnologias do mercado.</h2>
+                <div class="flex items-center space-x-6 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-yellow-400">4,7 ⭐</span>
+                        <span>4.955 classificações</span>
+                    </div>
+                    <div>
+                        <span class="font-bold">18.376</span>
+                        <span class="text-gray-400">Alunos</span>
+                    </div>
+                    <div>
+                        <span class="font-bold">50 horas</span>
+                        <span class="text-gray-400">Total</span>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-400">
+                    <p><i class="fas fa-clock mr-2"></i>Última atualização em dezembro de 2022</p>
+                    <p><i class="fas fa-globe mr-2"></i>Português <span class="bg-gray-700 px-2 py-1 rounded text-xs ml-2">Português [Automático]</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="w-96 bg-gray-800 border-l border-gray-700 flex flex-col">
+            <div class="p-4 border-b border-gray-700">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold">Conteúdo do curso</h3>
+                    <button class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto">
+                <!-- Course sections -->
+                <div class="accordion">
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer section-header" data-section="1">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 1: Introdução ao Node.js</h4>
+                                    <p class="text-sm text-gray-400">7 / 7 | 55m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="section-content hidden bg-gray-900">
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="yn833KsHFEw" 
+                                 data-title="Introdução ao Node.js" 
+                                 data-subtitle="Conhecendo o runtime JavaScript">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Introdução ao Node.js</span>
+                                    <span class="text-xs text-gray-400">8m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="kJQP7kiw5Fk" 
+                                 data-title="Instalando Node.js" 
+                                 data-subtitle="Configurando o ambiente de desenvolvimento">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Instalando Node.js</span>
+                                    <span class="text-xs text-gray-400">12m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="L72fhGm1tfE" 
+                                 data-title="Primeiro projeto Node" 
+                                 data-subtitle="Criando sua primeira aplicação">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Primeiro projeto Node</span>
+                                    <span class="text-xs text-gray-400">15m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer bg-purple-900/20 section-header" data-section="2">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-purple-400">Seção 2: HTTP</h4>
+                                    <p class="text-sm text-gray-400">2 / 2 | 19m</p>
+                                </div>
+                                <i class="fas fa-chevron-up text-purple-400"></i>
+                            </div>
+                        </div>
+                        <div class="section-content bg-gray-900">
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer bg-purple-900/30 border-l-4 border-purple-500 active-lesson" 
+                                 data-video="iYM2zFP3Zn0" 
+                                 data-title="O QUE É HTTP?" 
+                                 data-subtitle="A 'COISA' QUE MOVE A WEB.">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-purple-400"></i>
+                                    <span class="text-sm">O que é HTTP?</span>
+                                    <span class="text-xs text-gray-400">9m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="cuEtnrL9-H0" 
+                                 data-title="Métodos HTTP" 
+                                 data-subtitle="GET, POST, PUT, DELETE e mais">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Métodos HTTP</span>
+                                    <span class="text-xs text-gray-400">10m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer section-header" data-section="3">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 3: Fundamentos do Express.js</h4>
+                                    <p class="text-sm text-gray-400">5 / 7 | 1h 2m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="section-content hidden bg-gray-900">
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="VUyPMRYGXrU" 
+                                 data-title="Introdução ao Express.js" 
+                                 data-subtitle="Framework web para Node.js">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Introdução ao Express.js</span>
+                                    <span class="text-xs text-gray-400">12m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="gUHrpzqJTWY" 
+                                 data-title="Rotas no Express" 
+                                 data-subtitle="Criando endpoints para sua API">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Rotas no Express</span>
+                                    <span class="text-xs text-gray-400">18m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="uFEVlBLFkz4" 
+                                 data-title="Middlewares" 
+                                 data-subtitle="Interceptando e processando requisições">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Middlewares</span>
+                                    <span class="text-xs text-gray-400">15m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer section-header" data-section="4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 4: MySQL Básico</h4>
+                                    <p class="text-sm text-gray-400">0 / 5 | 51m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="section-content hidden bg-gray-900">
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="BPkxU16a2rI" 
+                                 data-title="Instalação do MySQL" 
+                                 data-subtitle="Configurando o banco de dados">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Instalação do MySQL</span>
+                                    <span class="text-xs text-gray-400">10m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="7S_tz1z_5bA" 
+                                 data-title="Comandos SQL básicos" 
+                                 data-subtitle="SELECT, INSERT, UPDATE, DELETE">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Comandos SQL básicos</span>
+                                    <span class="text-xs text-gray-400">22m</span>
+                                </div>
+                            </div>
+                            <div class="lesson-item p-3 pl-8 hover:bg-gray-700 cursor-pointer" 
+                                 data-video="rrSYuJUKyAM" 
+                                 data-title="Conectando Node.js com MySQL" 
+                                 data-subtitle="Integrando aplicação com banco">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-play-circle text-gray-400"></i>
+                                    <span class="text-sm">Conectando Node.js com MySQL</span>
+                                    <span class="text-xs text-gray-400">19m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 5: [Projeto #01] Criando uma plataforma de perguntas e respostas com...</h4>
+                                    <p class="text-sm text-gray-400">3 / 34 | 3h 56m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 6: Deploy de APP Node + MySQL em VPS - Digital Ocean</h4>
+                                    <p class="text-sm text-gray-400">0 / 15 | 1h 12m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 7: [Projeto#02] Criando um blog com painel administrativo - CRUD...</h4>
+                                    <p class="text-sm text-gray-400">0 / 58 | 6h 11m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 8: Javascript ES6 - ES7 - ES8</h4>
+                                    <p class="text-sm text-gray-400">0 / 11 | 1h 15m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 9: Programação assíncrona - Promises e Async/Await</h4>
+                                    <p class="text-sm text-gray-400">0 / 16 | 2h 2m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-700">
+                        <div class="p-4 hover:bg-gray-700 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Seção 10: Orientação a objetos com</h4>
+                                    <p class="text-sm text-gray-400">0 / 8 | 1h 32m</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.getElementById('video-container');
+            const videoPlaceholder = document.getElementById('video-placeholder');
+            const youtubeFrame = document.getElementById('youtube-frame');
+            const videoTitle = document.getElementById('video-title');
+            const videoSubtitle = document.getElementById('video-subtitle');
+
+            // Play button animation
+            const playButton = document.querySelector('.play-button');
+            if (playButton) {
+                playButton.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-pause text-white text-2xl"></i>';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-play text-white text-2xl ml-1"></i>';
+                    }, 2000);
+                });
+            }
+
+            // Function to load video
+            function loadVideo(videoId, title, subtitle) {
+                // Check if running locally (file:// protocol)
+                const isLocal = window.location.protocol === 'file:';
+                
+                if (isLocal) {
+                    // For local files, show a message and open YouTube in new tab
+                    videoPlaceholder.classList.remove('hidden');
+                    videoContainer.classList.add('hidden');
+                    
+                    // Update the placeholder with video info and open button
+                    const placeholder = document.getElementById('video-placeholder');
+                    placeholder.innerHTML = `
+                        <div class="relative z-10 text-center">
+                            <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+                                <i class="fab fa-youtube text-white text-3xl"></i>
+                            </div>
+                            <h1 class="text-4xl font-bold mb-4">${title}</h1>
+                            <p class="text-xl text-white/90 mb-6">${subtitle}</p>
+                            <button onclick="window.open('https://youtube.com/watch?v=${videoId}', '_blank')" 
+                                    class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-medium transition-colors">
+                                <i class="fab fa-youtube mr-2"></i>
+                                Assistir no YouTube
+                            </button>
+                            <p class="text-sm text-white/70 mt-4">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Para páginas locais, o vídeo abrirá no YouTube
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    // For served pages, embed normally
+                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&origin=${window.location.origin}`;
+                    youtubeFrame.src = embedUrl;
+                    videoContainer.classList.remove('hidden');
+                    videoPlaceholder.classList.add('hidden');
+                }
+                
+                videoTitle.textContent = title;
+                videoSubtitle.textContent = subtitle;
+
+                // Update active lesson
+                document.querySelectorAll('.lesson-item').forEach(item => {
+                    item.classList.remove('active-lesson', 'bg-purple-900/30', 'border-l-4', 'border-purple-500');
+                    const icon = item.querySelector('i');
+                    icon.classList.remove('text-purple-400');
+                    icon.classList.add('text-gray-400');
+                });
+
+                // Mark current lesson as active
+                const currentLesson = document.querySelector(`[data-video="${videoId}"]`);
+                if (currentLesson) {
+                    currentLesson.classList.add('active-lesson', 'bg-purple-900/30', 'border-l-4', 'border-purple-500');
+                    const icon = currentLesson.querySelector('i');
+                    icon.classList.remove('text-gray-400');
+                    icon.classList.add('text-purple-400');
+                }
+            }
+
+            // Function to show placeholder
+            function showPlaceholder() {
+                videoContainer.classList.add('hidden');
+                videoPlaceholder.classList.remove('hidden');
+                youtubeFrame.src = '';
+                
+                // Restore original placeholder content
+                const placeholder = document.getElementById('video-placeholder');
+                placeholder.innerHTML = `
+                    <!-- Decorative circles -->
+                    <div class="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full"></div>
+                    <div class="absolute top-40 right-32 w-48 h-48 border border-white/10 rounded-full"></div>
+                    <div class="absolute bottom-32 left-40 w-64 h-64 border border-white/5 rounded-full"></div>
+                    <div class="absolute top-10 right-10 w-16 h-16 border-2 border-white/30 rounded-full"></div>
+                    
+                    <!-- Play button and content -->
+                    <div class="relative z-10 text-center">
+                        <button class="play-button w-20 h-20 bg-black bg-opacity-70 rounded-full flex items-center justify-center mb-8 mx-auto hover:bg-opacity-90">
+                            <i class="fas fa-play text-white text-2xl ml-1"></i>
+                        </button>
+                        <h1 id="video-title" class="text-5xl font-bold mb-4">CURSO PARA DIÁCONOS</h1>
+                        <p id="video-subtitle" class="text-xl text-white/90">Clique em uma aula para começar</p>
+                    </div>
+                `;
+            }
+
+            // Lesson click handlers
+            document.querySelectorAll('.lesson-item').forEach(lesson => {
+                lesson.addEventListener('click', function() {
+                    const videoId = this.dataset.video;
+                    const title = this.dataset.title;
+                    const subtitle = this.dataset.subtitle;
+                    loadVideo(videoId, title, subtitle);
+                });
+            });
+
+            // Section accordion functionality
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const sectionContent = this.nextElementSibling;
+                    const chevron = this.querySelector('i');
+                    
+                    if (sectionContent.classList.contains('hidden')) {
+                        sectionContent.classList.remove('hidden');
+                        chevron.classList.remove('fa-chevron-down');
+                        chevron.classList.add('fa-chevron-up');
+                    } else {
+                        sectionContent.classList.add('hidden');
+                        chevron.classList.remove('fa-chevron-up');
+                        chevron.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // Back to course overview
+            document.querySelector('[href="#"]')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPlaceholder();
+                
+                // Remove all active lesson styling
+                document.querySelectorAll('.lesson-item').forEach(item => {
+                    item.classList.remove('active-lesson', 'bg-purple-900/30', 'border-l-4', 'border-purple-500');
+                    const icon = item.querySelector('i');
+                    icon.classList.remove('text-purple-400');
+                    icon.classList.add('text-gray-400');
+                });
+                
+                // Reset to default title
+                videoTitle.textContent = 'CURSO PARA DIÁCONOS';
+                videoSubtitle.textContent = 'Clique em uma aula para começar';
+            });
+
+            // Tab navigation
+            document.querySelectorAll('button[class*="border-b"]').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active state from all tabs
+                    document.querySelectorAll('button[class*="border-b"]').forEach(t => {
+                        t.classList.remove('text-white', 'border-purple-500');
+                        t.classList.add('text-gray-400', 'hover:text-white');
+                    });
+                    
+                    // Add active state to clicked tab
+                    this.classList.remove('text-gray-400', 'hover:text-white');
+                    this.classList.add('text-white', 'border-b-2', 'border-purple-500', 'pb-2');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

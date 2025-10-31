@@ -1,0 +1,491 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><%= title %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/owl.carousel.css">
+  <link rel="stylesheet" href="/css/owl.theme.css">
+  <link rel="stylesheet" href="/css/owl.transitions.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/meanmenu.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/educate-custon-icon.css">
+  <link rel="stylesheet" href="/css/morrisjs/morris.css">
+  <link rel="stylesheet" href="/css/scrollbar/jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet" href="/css/metisMenu/metisMenu.min.css">
+  <link rel="stylesheet" href="/css/metisMenu/metisMenu-vertical.css">
+  <link rel="stylesheet" href="/css/calendar/fullcalendar.min.css">
+  <link rel="stylesheet" href="/css/calendar/fullcalendar.print.min.css">
+  <link rel="stylesheet" href="/css/form/all-type-forms.css">
+  <link rel="stylesheet" href="/css/dropzone/dropzone.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      background: #E8E9EA;
+    }
+  </style>
+</head>
+
+<body>
+  <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+  <!-- Start Left menu area -->
+  <div class="left-sidebar-pro">
+    <nav id="sidebar" class="">
+      <%- include('./../partials/sidebarAdminNucleo.ejs') %>
+    </nav>
+  </div>
+  <!-- End Left menu area -->
+  <!-- Start Welcome area -->
+  <div class="all-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="logo-pro">
+            <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-advance-area">
+      <div class="header-top-area">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="header-top-wraper">
+                <div class="row">
+                  <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                    <div class="menu-switcher-pro">
+                      <button type="button" id="sidebarCollapse"
+                        class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                        <i class="educate-icon educate-nav"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu start -->
+
+      <!-- Mobile Menu end -->
+      <div class="breadcome-area">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="breadcome-list single-page-breadcome">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="breadcome-heading" style="margin-top: 15px;font-size: 18px;font-weight: bold;">
+                      Olá <%= user %> seja bem vindo
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <ul class="breadcome-menu">
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Single pro tab review Start-->
+    <div class="single-pro-review-area mt-t-30 mg-b-15">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="product-payment-inner-st">
+              <form role="form" action="/adm/editAluno" method="post" onsubmit="validar()">
+                <% Aluno.forEach(dados=>{  %>
+                <input type="hidden" name="uid_usuario" value="<%= uid_usuario %>">
+                <input type="hidden" name="id_aluno" value="<%= dados.id_aluno %>">
+                <div class="row">
+                  <div class="col-md-4 px-1">
+                    <div class="form-group">
+                      <label>Nome <b>*</b></label>
+                      <input type="text" class="form-control" placeholder="" name="nome" value="<%= dados.nome %>"
+                        required>
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email <b>*</b></label>
+                      <input type="text" class="form-control" id="email" name="email" placeholder=""
+                        value="<%= dados.email %>" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">CPF <b>*</b></label>
+                      <input type="text" class="form-control" id="cpf" name="cpf" placeholder=""
+                        value="<%= dados.cpf %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">RG</label>
+                      <input type="text" class="form-control" name="rg" placeholder="" value="<%= dados.rg %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 px-1">
+                    <div class="form-group">
+                      <label>Nome Pai</label>
+                      <input type="text" class="form-control" placeholder="" name="nome_pai"
+                        value="<%= dados.nome_pai %>">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Nome Mãe</label>
+                      <input type="text" class="form-control" placeholder="" name="nome_mae"
+                        value="<%= dados.nome_mae %>">
+                    </div>
+                  </div>
+                  <div class="col-md-2 pl-1">
+                    <div class="form-group">
+                      <label>Telefone</label>
+                      <input type="text" class="form-control" placeholder="" id="telefone" name="telefone"
+                        value="<%= dados.endereco_telefone %>">
+                    </div>
+                  </div>
+                  <div class="col-md-2 pl-1">
+                    <div class="form-group">
+                      <label>Nascimento</label>
+                      <input type="text" class="form-control" placeholder="" id="data" name="nascimento"
+                        value="<%= dados.data_nascimento %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Denominação</label>
+                      <input type="text" class="form-control" placeholder="" name="denominacao"
+                        value="<%= dados.denominacao %>">
+                    </div>
+                  </div>
+                  <div class="col-md-2 px-1">
+                    <div class="form-group">
+                      <label>Batismo Águas</label>
+                      <input type="text" class="form-control" placeholder="" id="data_batismo" name="data_batismo"
+                        value="<%= dados.batismo_aguas %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Profissão</label>
+                      <input type="text" class="form-control" placeholder="" name="profissao"
+                        value="<%= dados.profissao %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Escolaridade</label>
+                      <input type="text" class="form-control" placeholder="" name="escolaridade"
+                        value="<%= dados.escolaridade %>">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Modalidade </label>
+                      <select class="form-control show-tick" name="id_modalidade" required>
+
+                        <option value="<%= id_modalidade %>" selected> <%= descricao_modalidade %> </option>
+
+                        <% modalidade.forEach(modalidade=>{ %>
+                        <% if(modalidade.id_modalidade != id_modalidade) { %>
+                        <option value="<%=modalidade.id_modalidade %>"> <%=modalidade.descricao %> </option>
+                        <% } %>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Nivel Curso</label>
+                      <select class="form-control show-tick" name="id_modulo" required>
+                        <option value="<%= id_modulo %>" selected> <%= descricao_modulo %> </option>
+
+                        <% modulo.forEach(modulo=>{ %>
+                        <% if(modulo.id_modulo != id_modulo) { %>
+                        <option value="<%=modulo.id_modulo %>"> <%=modulo.descricao %> </option>
+                        <% } %>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Núcleo</label>
+                      <select class="form-control show-tick" name="id_nucleo" id="id_nucleo">
+                        <option value="<%= id_nucleo %>" selected> <%= descricao_nucleo %> </option>
+                        <% nucleos.forEach(nucleo=>{ %>
+                        <option value="<%=nucleo.id_nucleo %>"> <%=nucleo.descricao %> </option>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 pr-1">
+                    <div class="form-group">
+                      <label>Naturalidade</label>
+                      <input type="text" class="form-control" placeholder="" name="naturalidade"
+                        value="<%= dados.natural %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 px-1">
+                    <div class="form-group">
+                      <label>CEP</label>
+                      <input type="text" class="form-control" name="cep" id="cep" placeholder=""
+                        value="<%= dados.endereco_cep %>">
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-group">
+                      <label>Endereço</label>
+                      <input type="text" class="form-control" name="endereco" id="endereco" placeholder=""
+                        value="<%= dados.endereco_rua %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 px-1">
+                    <div class="form-group">
+                      <label>Numero</label>
+                      <input type="text" class="form-control" name="numero" placeholder=""
+                        value="<%= dados.endereco_numero %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 px-1">
+                    <div class="form-group">
+                      <label>Complemento</label>
+                      <input type="text" class="form-control" name="complemento" placeholder=""
+                        value="<%= dados.endereco_complemento %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Bairro</label>
+                      <input type="text" class="form-control" name="bairro" id="bairro" placeholder=""
+                        value="<%= dados.endereco_bairro %>">
+                    </div>
+                  </div>
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Cidade</label>
+                      <input type="text" class="form-control" name="cidade" id="cidade" placeholder=""
+                        value="<%= dados.endereco_cidade %>">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 px-1">
+                    <div class="form-group">
+                      <label>UF</label>
+                      <input type="text" class="form-control" name="uf" id="uf" placeholder=""
+                        value="<%= dados.endereco_uf %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round"
+                      style="padding-left: 15px;padding-right: 15px;padding-top: 5px;padding-bottom: 5px; font-size: 13px;">Atualizar</button>
+                    <button type="reset" class="btn btn-warning btn-round" id="cadAlunoNovo"
+                      style="padding-left: 15px;padding-right: 15px;padding-top: 5px;padding-bottom: 5px; font-size: 13px;">Limpar</button>
+                    <a href="/adm/alunos/<%= uid_usuario %>" class="btn btn-success btn-round"
+                      style="padding-left: 15px;padding-right: 15px;padding-top: 5px;padding-bottom: 5px; font-size: 13px;">Voltar</a>
+                  </div>
+
+                </div>
+                <% }) %>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+  </div>
+
+  <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/jquery-price-slider.js"></script>
+  <script src="/js/jquery.meanmenu.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.sticky.js"></script>
+  <script src="/js/jquery.scrollUp.min.js"></script>
+  <script src="/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="/js/scrollbar/mCustomScrollbar-active.js"></script>
+  <script src="/js/metisMenu/metisMenu.min.js"></script>
+  <script src="/js/metisMenu/metisMenu-active.js"></script>
+  <script src="/js/sparkline/jquery.sparkline.min.js"></script>
+  <script src="/js/sparkline/jquery.charts-sparkline.js"></script>
+  <script src="/js/calendar/moment.min.js"></script>
+  <script src="/js/calendar/fullcalendar.min.js"></script>
+  <script src="/js/calendar/fullcalendar-active.js"></script>
+  <!--<script src="/js/jquery.maskedinput.min.js"></script>-->
+  <script src="/js/masking-active.js"></script>
+  <script src="/js/datepicker/jquery-ui.min.js"></script>
+  <script src="/js/datepicker/datepicker-active.js"></script>
+  <script src="/js/form-validation/jquery.form.min.js"></script>
+  <script src="/js/form-validation/jquery.validate.min.js"></script>
+  <script src="/js/form-validation/form-active.js"></script>
+  <script src="/js/dropzone/dropzone.js"></script>
+  <script src="/js/tab.js"></script>
+  <script src="/js/plugins.js"></script>
+  <script src="/js/main.js"></script>
+  <!--<script src="/js/tawk-chat.js"></script>-->
+  <script>
+    $(document).ready(function () {
+
+      $("#modal-default").modal("show");
+      // $(".select2").select2();
+      $("#cpf").mask("000.000.000-00");
+      $("#cep").mask("00000-000");
+      $("#telefone").mask("(00)00000-0000");
+      $("#data").mask("00/00/0000");
+      $("#data_batismo").mask("00/00/0000");
+
+
+      $("#cadAlunoNovo").click(function () {
+
+
+      })
+
+
+      function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#endereco").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#uf").val("");
+        $("#ibge").val("");
+      }
+
+
+
+
+      $("#cep").blur(function () {
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, "");
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/;
+
+          //Valida o formato do CEP.
+          if (validacep.test(cep)) {
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#endereco").val("...");
+            $("#bairro").val("...");
+            $("#cidade").val("...");
+            $("#uf").val("...");
+            $("#ibge").val("...");
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON(
+              "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+              function (dados) {
+                if (!("erro" in dados)) {
+                  //Atualiza os campos com os valores da consulta.
+                  $("#endereco").val(dados.logradouro);
+                  $("#bairro").val(dados.bairro);
+                  $("#cidade").val(dados.localidade);
+                  $("#uf").val(dados.uf);
+                  $("#ibge").val(dados.ibge);
+                } //end if.
+                else {
+                  //CEP pesquisado não foi encontrado.
+                  limpa_formulário_cep();
+                  alert("CEP não encontrado.");
+                }
+              }
+            );
+          } //end if.
+          else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+          }
+        } //end if.
+        else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+        }
+      })
+
+      function getCookie(name) {
+        let cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i];
+          let [cookieName, cookieValue] = cookie.split("=");
+          if (cookieName === name) {
+            return cookieValue;
+          }
+        }
+        return null;
+      }
+      //document.getElementById("user_logado").innerHTML = getCookie("user_logado");
+
+      function validar() {
+
+        if (document.getElementById("id_modalidade").value == 0) {
+          alert("Maior");
+          return (false);
+        } else {
+          return (true);
+        }
+      }
+
+    })
+  </script>
+</body>
+
+</html>

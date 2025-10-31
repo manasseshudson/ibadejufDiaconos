@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Pessoais - IBADEJUF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .form-section {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            transform: translateY(-1.5rem) scale(0.8);
+            color: #3B82F6;
+            background: white;
+            padding: 0 0.25rem;
+            z-index: 10;
+        }
+
+        .input-group select:focus + label,
+        .input-group select.has-value + label,
+        .input-group select:not([value=""]) + label {
+            transform: translateY(-1.5rem) scale(0.8);
+            color: #3B82F6;
+            background: white;
+            padding: 0 0.25rem;
+            z-index: 10;
+        }
+
+        /* Estilo específico para selects vazios */
+        .input-group select:invalid + label {
+            transform: translateY(0) scale(1);
+            color: #6B7280;
+            background: transparent;
+            padding: 0;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            transition: all 0.2s;
+            pointer-events: none;
+            color: #6B7280;
+            background: transparent;
+            z-index: 5;
+        }
+
+        .floating-label {
+            transform: translateY(-1.5rem) scale(0.8);
+            color: #3B82F6;
+            background: white;
+            padding: 0 0.25rem;
+            z-index: 10;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 overflow-x-hidden">
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden fixed top-4 left-4 z-60 bg-white p-2 rounded-lg shadow-lg border border-gray-200">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-2xl z-50 border-r border-gray-200 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-gray-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5,3H7V5H21V7H7V9H19V11H7V13H21V15H7V17H19V19H7V21H5V3M3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3H5A2,2 0 0,0 3,5Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-blue-600">IBADEJUF</h1>
+                    <p class="text-xs text-gray-500">Instituto Bíblico</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="p-4 space-y-2">
+            <!-- Principal -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Principal</span>
+            </a>
+
+            <!-- Matérias -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 19H5V5H19V19M17 17H7V15H17V17M17 13H7V11H17V13M17 9H7V7H17V9Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Matérias</span>
+            </a>
+
+            <!-- Dados Pessoais -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                <div class="w-5 h-5 text-blue-500">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Dados Pessoais</span>
+            </a>
+
+            <!-- Sair -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Sair</span>
+            </a>
+        </nav>
+
+        <!-- User Info at Bottom -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 bg-gray-50">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                    MH
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate"><%= user %></p>
+                    <p class="text-xs text-gray-500">Estudante</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="md:ml-64 flex-1 px-4 md:px-6 py-12 pt-20 md:pt-12 overflow-x-hidden">
+        <!-- Header Section -->
+        <div class="text-center mb-12 md:mb-16 animate-fade-in-up max-w-full">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    Dados Pessoais
+                </h1>
+            </div>
+            <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto px-4">
+                Olá <%= nomeAluno %>! Seja bem-vindo. Complete suas informações pessoais para ter acesso completo ao sistema.
+            </p>
+            <div class="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-4xl mx-auto px-2">
+            
+                <!-- Informações Básicas -->
+                <div class="form-section bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100 animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Informações Básicas</h2>
+                    </div>
+                    
+					<!--action="/user/editProfile"-->
+					<form id="formulario" action="javascript:func()" method="post">
+					<input type="hidden" name="uid_usuario" id="uid_usuario" value="<%= uid_usuario %>" >
+					<% Aluno.forEach(dados=>{  %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Nome -->
+                        <div class="input-group">
+                            <input type="text" id="nome" placeholder=" " value="<%= dados.nome %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" value="MANASSÉS HUDSON Cdd">
+                            <label for="nome" class="floating-label">Nome *</label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group">
+                            <input type="email"  id="email" placeholder=" " value="<%= dados.email %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" value="contato@ibadejuf.com.br">
+                            <label for="email" class="floating-label">Email *</label>
+                        </div>
+
+                        <!-- CPF -->
+                        <div class="input-group">
+                            <input type="text" id="cpf" placeholder=" " value="<%= dados.cpf %>" disabled class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" value="052.343.456-10">
+                            <label for="cpf" class="floating-label">CPF *</label>
+                        </div>
+
+                        <!-- RG -->
+                        <div class="input-group">
+                            <input type="text" id="rg"  placeholder=" " value="<%= dados.rg %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="rg">RG</label>
+                        </div>
+
+                        <!-- Nome do Pai -->
+                        <div class="input-group">
+                            <input type="text" id="nome_pai"  placeholder=" " value="<%= dados.nome_pai %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="nome-pai">Nome Pai</label>
+                        </div>
+
+                        <!-- Nome da Mãe -->
+                        <div class="input-group">
+                            <input type="text" id="nome_mae"  placeholder=" " value="<%= dados.nome_mae %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="nome-mae">Nome Mãe</label>
+                        </div>
+
+                        <!-- Telefone -->
+                        <div class="input-group">
+                            <input type="tel" id="telefone"  placeholder=" " value="<%= dados.endereco_telefone %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="telefone">Telefone</label>
+                        </div>
+
+                        <!-- Data de Nascimento -->
+                        <div class="input-group">
+                            <input type="text" id="nascimento" name="nascimento" placeholder=" " value="<%= dados.data_nascimento %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" >
+                            <label for="nascimento" class="floating-label">Nascimento</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informações Eclesiásticas -->
+                <div class="form-section bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100 animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 19H5V5H19V19Z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Informações Eclesiásticas</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Denominação -->
+                        <div class="input-group">
+                            <input type="text" id="denominacao"  placeholder=" " value="<%= dados.denominacao %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="denominacao">Denominação</label>
+                        </div>
+
+                        <!-- Batismo Águas -->
+                        <div class="input-group">
+                            <input type="text" id="data_batismo"  placeholder=" " value="<%= dados.batismo_aguas %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="batismo-aguas">Batismo Águas</label>
+                        </div>
+
+                        <!-- Profissão -->
+                        <div class="input-group">
+                            <input type="text" id="profissao" name="profissao" placeholder=" "  value="<%= dados.profissao %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="profissao">Profissão</label>
+                        </div>
+
+                        <!-- Escolaridade -->
+                        <div class="input-group">
+                            <input type="text" id="escolaridade" name="escolaridade" placeholder=" " value="<%= dados.escolaridade %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="escolaridade">Escolaridade</label>
+                        </div>
+
+                        <!-- Modalidade -->
+                        <div class="input-group">
+							
+						
+                            <select id="id_modalidade"  disabled class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+								<option value="<%= dados.id_modalidade %>" selected> <%= descricao_modalidade %> </option>
+	                        </select>
+                            <label for="modalidade">Modalidade</label>
+                        </div>
+
+                        <!-- Nível Curso -->
+                        <div class="input-group">
+							<select name="id_modulo" required disabled class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+								  
+								  <option value="<%= dados.id_modulo %>" selected> <%= descricao_modulo %> </option>
+							  </select>
+						
+                            <!--<select id="id_modulo"  disabled class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                <option value="basico" selected >Básico</option>
+                                <option value="intermediario">Intermediário</option>
+                                <option value="avancado">Avançado</option>
+                            </select>-->
+                            <label for="nivel-curso">Nível Curso</label>
+                        </div>
+
+                        <!-- Naturalidade -->
+                        <div class="input-group">
+                            <input type="text" id="naturalidade"  placeholder=" " value="<%= dados.natural %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="naturalidade">Naturalidade</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Endereço -->
+                <div class="form-section bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100 animate-scale-in" style="animation-delay: 0.3s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9C0 5.25 7 13 7 13S7-7.75 7-13C0-3.87-3.13-7-7-7ZM0 9.5C-1.38 0-2.5-1.12-2.5-2.5S1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5Z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Endereço</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+                        <!-- CEP -->
+                        <div class="input-group lg:col-span-2">
+                            <input type="text" id="cep"  placeholder=" " value="<%= dados.endereco_cep %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="cep">CEP</label>
+                        </div>
+
+                        <!-- Endereço -->
+                        <div class="input-group lg:col-span-3">
+                            <input type="text" id="endereco"  placeholder=" " value="<%= dados.endereco_rua %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="endereco">Endereço</label>
+                        </div>
+
+                        <!-- Número -->
+                        <div class="input-group">
+                            <input type="text" id="numero"  placeholder=" " value="<%= dados.endereco_numero %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="numero">Número</label>
+                        </div>
+
+                        <!-- Complemento -->
+                        <div class="input-group lg:col-span-2">
+                            <input type="text" id="complemento"  placeholder=" " value="<%= dados.endereco_complemento %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="complemento">Complemento</label>
+                        </div>
+
+                        <!-- Bairro -->
+                        <div class="input-group lg:col-span-2">
+                            <input type="text" id="bairro" placeholder=" " value="<%= dados.endereco_bairro %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="bairro">Bairro</label>
+                        </div>
+
+                        <!-- Cidade -->
+                        <div class="input-group lg:col-span-2">
+                            <input type="text" id="cidade"  placeholder=" " value="<%= dados.endereco_cidade %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="cidade">Cidade</label>
+                        </div>
+
+                        <!-- UF -->
+                        <div class="input-group">
+                            <input type="text" id="uf"  placeholder=" " value="<%= dados.endereco_uf %>" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <label for="uf">UF</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-scale-in" style="animation-delay: 0.4s; margin-top:15px">
+                    <button id="editProfile" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-200">
+                        <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Atualizar
+                    </button>
+                    <!--
+                    <button type="button" class="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-lg shadow-lg hover:from-amber-600 hover:to-amber-700 transform hover:scale-105 transition-all duration-200">
+                        <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Limpar
+                    </button>
+                    
+                    <button type="button" class="px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-200">
+                        <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C13.1 12 14 11.1 14 10S13.1 8 12 8 10 8.9 10 10 10.9 12 12 12M16 17.43C16 16.62 13.96 15.51 12 15.51S8 16.62 8 17.43V18H16V17.43Z"/>
+                        </svg>
+                        Voltar
+                    </button>-->
+                </div>
+				</form>
+				<% }) %>>
+				
+            
+        </div>
+
+        <!-- Footer Section -->
+        <div class="text-center mt-16 animate-fade-in-up" style="animation-delay: 0.5s">
+            <p class="text-gray-500 text-sm">
+                Mantenha seus dados sempre atualizados para melhor experiência no sistema
+            </p>
+        </div>
+    </div>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/examples.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+		$(document).ready(function () {
+    
+			$("#cpf").mask("000.000.000-00");
+			$("#cep").mask("00000-000");
+			$("#telefone").mask("(00)00000-0000");
+			$("#nascimento").mask("00/00/0000");
+			$("#data_batismo").mask("00/00/0000");
+		})
+		$("#editProfile").click(function(){
+		
+			//alert()
+			let uid_usuario = $("#uid_usuario").val();
+			let nome = $("#nome").val();
+			let email = $("#email").val();
+			let cpf = $("#cpf").val();
+			let rg = $("#rg").val();
+			let nome_pai = $("#nome_pai").val();
+			let nome_mae = $("#nome_mae").val();
+			let telefone = $("#telefone").val();
+			let nascimento = $("#nascimento").val();
+			let denominacao = $("#denominacao").val();
+			let data_batismo = $("#data_batismo").val();
+			let profissao = $("#profissao").val();
+			let escolaridade = $("#escolaridade").val();
+			let modalidade = $("#id_modalidade").val();
+			let modulo = $("#id_modulo").val();
+			//let id_nucleo = $("#id_nucleo").val();
+			let naturalidade = $("#naturalidade").val();
+			let cep = $("#cep").val();
+			let endereco = $("#endereco").val();
+			let numero = $("#numero").val();
+			let complemento = $("#complemento").val();
+			let bairro = $("#bairro").val();
+			let cidade = $("#cidade").val();
+			let uf = $("#uf").val();
+			
+			console.log('uid'+uid_usuario);
+			console.log(nome);
+			/*console.log(email);
+			console.log(cpf);
+			console.log(rg);
+			console.log(nome_pai);
+			console.log(nome_mae);
+			console.log(telefone);
+			console.log(nascimento);
+			console.log(denominacao);
+			console.log(data_batismo);
+			console.log(profissao);
+			console.log(escolaridade);
+			console.log(modalidade);
+			console.log('modulo'+modulo);
+			//console.log(id_nucleo);
+			console.log(naturalidade);
+			console.log(nome);
+			console.log(cep);
+			console.log(endereco);
+			console.log(numero);
+			console.log(complemento);
+			console.log(bairro);
+			console.log(cidade);
+			console.log(uf);
+			*/
+			
+			$.post('/user/editProfile', {
+					uid_usuario: uid_usuario,
+					
+					nome: nome,
+					email: email,
+					cpf_alteracao: cpf,
+					rg: rg,
+					nome_pai: nome_pai,
+					nome_mae: nome_mae,
+					telefone: telefone,
+					nascimento: nascimento,
+					denominacao: denominacao,
+					batizado: data_batismo,
+					profissao: profissao,
+					escolaridade: escolaridade,
+					id_modalidade: modalidade,
+					//id_nucleo : id_nucleo,
+					naturalidade: naturalidade,
+					id_modulo: modulo,
+					cep: cep,
+					endereco:endereco,
+					numero: numero,
+					complemento: complemento,
+					bairro: bairro,
+					cidade: cidade,
+					uf: uf
+					
+				}, function(resposta) {
+					console.log(resposta)
+					Swal.fire(resposta);
+					
+				});
+			
+		})
+	
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+        });
+
+        // Form functionality
+		/*
+        document.getElementById('personal-data-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const requiredFields = ['nome', 'email', 'cpf'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    input.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    input.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                alert('Dados atualizados com sucesso!');
+            } else {
+                alert('Por favor, preencha todos os campos obrigatórios marcados com *');
+            }
+        });*/
+
+        // Clear form
+		/*
+        document.querySelector('button[type="button"]').addEventListener('click', function() {
+            if (confirm('Deseja realmente limpar todos os campos?')) {
+                document.getElementById('personal-data-form').reset();
+                
+                // Remove floating label classes
+                document.querySelectorAll('.floating-label').forEach(label => {
+                    label.classList.remove('floating-label');
+                });
+                
+                // Remove has-value classes from selects
+                document.querySelectorAll('select').forEach(select => {
+                    select.classList.remove('has-value');
+                    const label = select.nextElementSibling;
+                    if (label && label.tagName === 'LABEL') {
+                        label.classList.remove('floating-label');
+                    }
+                });
+            }
+        });
+		*/
+        // Handle floating labels
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to update select class and label
+            function updateSelectLabel(select) {
+                const label = select.nextElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    // Verifica se o select tem uma opção válida selecionada
+                    const hasValidValue = select.value !== '' && select.value !== null && !select.options[select.selectedIndex]?.disabled;
+                    
+                    if (hasValidValue) {
+                        select.classList.add('has-value');
+                        label.classList.add('floating-label');
+                    } else {
+                        select.classList.remove('has-value');
+                        label.classList.remove('floating-label');
+                    }
+                }
+            }
+
+            // Check for pre-filled inputs
+            document.querySelectorAll('input').forEach(input => {
+                if (input.value.trim() !== '') {
+                    const label = input.nextElementSibling;
+                    if (label && label.tagName === 'LABEL') {
+                        label.classList.add('floating-label');
+                    }
+                }
+            });
+
+            // Initialize selects
+            document.querySelectorAll('select').forEach(select => {
+                updateSelectLabel(select);
+                
+                // Handle select changes
+                select.addEventListener('change', function() {
+                    updateSelectLabel(this);
+                });
+
+                // Handle select focus
+                select.addEventListener('focus', function() {
+                    const label = this.nextElementSibling;
+                    if (label && label.tagName === 'LABEL') {
+                        label.classList.add('floating-label');
+                        this.classList.add('has-value');
+                    }
+                });
+
+                // Handle select blur
+                select.addEventListener('blur', function() {
+                    updateSelectLabel(this);
+                });
+            });
+
+            // Handle input focus and blur events
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('focus', function() {
+                    const label = this.nextElementSibling;
+                    if (label && label.tagName === 'LABEL') {
+                        label.classList.add('floating-label');
+                    }
+                });
+
+                input.addEventListener('blur', function() {
+                    const label = this.nextElementSibling;
+                    if (label && label.tagName === 'LABEL' && this.value.trim() === '') {
+                        label.classList.remove('floating-label');
+                    }
+                });
+            });
+        });
+
+        // Sidebar navigation functionality
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const linkText = this.querySelector('span').textContent;
+                
+                // Handle specific actions based on clicked item
+                if (linkText === 'Sair') {
+                    if (confirm('Deseja realmente sair do sistema?')) {
+                        //alert('🔐 Saindo do sistema IBADEJUF...\n\nObrigado por usar nosso sistema!');
+                        // Aqui você poderia redirecionar para página de login
+                       window.location.href = '/loginv2';
+                    }
+                    return; // Don't change active state for logout
+                }
+                
+                // Remove active state from all links
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-blue-50', 'text-blue-600', 'border', 'border-blue-100', 'shadow-sm');
+                    l.classList.add('text-gray-600', 'hover:bg-blue-50', 'hover:text-blue-600');
+                });
+                
+                // Add active state to clicked link
+                this.classList.remove('text-gray-600', 'hover:bg-blue-50', 'hover:text-blue-600');
+                this.classList.add('bg-blue-50', 'text-blue-600', 'border', 'border-blue-100', 'shadow-sm');
+                
+                // Show specific alerts for each menu item
+                switch(linkText) {
+                    case 'Principal':
+                        //alert('🏠 Navegando para PÁGINA PRINCIPAL\n\nVocê será redirecionado para o dashboard principal do sistema.');
+						window.location.href = "/user/principal/<%= uid_usuario %>";
+                        break;
+                    case 'Matérias':
+                        //alert('📚 Navegando para MATÉRIAS DISPONÍVEIS\n\nVocê verá todas as disciplinas teológicas disponíveis para estudo.');
+						window.location.href = "/user/materias/<%= uid_usuario %>";
+                        break;
+                    case 'Dados Pessoais':
+                        //alert('👤 Você já está na página DADOS PESSOAIS\n\nAqui você pode atualizar suas informações pessoais.');
+						window.location.href = "/user/profile/<%= uid_usuario %>";
+                        break;
+                    default:
+                        alert(`📌 Item selecionado: ${linkText}`);
+                }
+            });
+        });
+
+        // CEP lookup functionality (placeholder)
+        /*document.getElementById('cep').addEventListener('blur', function() {
+            const cep = this.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                // Simulate CEP lookup
+                console.log('Buscando CEP:', cep);
+                // Here you would typically make an API call to a CEP service
+            }
+        });
+*/
+        // Input masks
+        /*document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{2})(\d)/, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+		*/
+    </script>
+</body>
+</html>

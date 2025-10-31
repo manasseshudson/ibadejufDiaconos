@@ -1,0 +1,174 @@
+<ul class="side-menu metismenu">
+    <li>
+        <a href="/ead/adm/principal" id="link_principal"><i class="sidebar-item-icon fa fa-th-large"></i>
+            <span class="nav-label">Dashboard</span>
+        </a>
+    </li><!--
+    <li>
+        <a href="" data-toggle="modal" data-target="#squarespaceModal"><i class="sidebar-item-icon fa fa-address-card-o" aria-hidden="true"></i>
+            <span class="nav-label">Busca Alunos por CPF</span>
+        </a>
+    </li>-->
+
+	<li class="active">
+		<a class="has-arrow" href="index.html">
+			   <span class="educate-icon educate-home icon-wrap"></span>
+			   <span class="mini-click-non">Education</span>
+			</a>
+		<ul class="submenu-angle" aria-expanded="true">
+			<li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">Dashboard v.1</span></a></li>
+			<li><a title="Dashboard v.2" href="index-1.html"><span class="mini-sub-pro">Dashboard v.2</span></a></li>
+			<li><a title="Dashboard v.3" href="index-2.html"><span class="mini-sub-pro">Dashboard v.3</span></a></li>
+			<li><a title="Analytics" href="analytics.html"><span class="mini-sub-pro">Analytics</span></a></li>
+			<li><a title="Widgets" href="widgets.html"><span class="mini-sub-pro">Widgets</span></a></li>
+		</ul>
+	</li>
+
+    <li class="">
+        <a href="javascript:;" aria-expanded="false"><i class="sidebar-item-icon fa fa-bookmark"></i>
+            <span class="nav-label">CADASTROS</span><i class="fa fa-angle-left arrow"></i></a>
+        <ul class="nav-2-level collapse" aria-expanded="false" style="height: 0px;">
+            <li>
+                <a href="" id="link_add_alunos">Alunos</a>
+            </li>
+            <li>
+                <a href="" id="link_add_aulas">Aulas</a>
+            </li>
+            <li>
+                <a href="" id="link_add_user">Usuários</a>
+            </li><!--
+            <li>
+                <a href="" id="link_cadContas_pagar">Contas a Pagar</a>
+            </li>-->
+        </ul>
+    </li>
+
+    <li>
+        <a href="/ead/adm/alunos" id="link_alunos"><i class="sidebar-item-icon fa fa-users" aria-hidden="true"></i>
+            <span class="nav-label">Alunos Cadastrados</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="/ead/adm/alunos" id="link_alunos_1_basico"><i class="sidebar-item-icon fa fa-list-ol" aria-hidden="true"></i>
+            <span class="nav-label">Alunos 1º Ano Básico</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="/ead/adm/alunos" id="link_alunos_2_basico"><i class="sidebar-item-icon fa fa-list-ol" aria-hidden="true"></i>
+            <span class="nav-label">Alunos 2º Ano Básico</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="/ead/adm/alunos" id="link_alunos_medio"><i class="sidebar-item-icon fa fa-list-ol" aria-hidden="true"></i>
+            <span class="nav-label">Alunos Ensino Médio</span>
+        </a>
+    </li>
+
+    <!--
+    <li>
+        <a href="/ead/adm/addAluno" id="link_add_alunos"><i class="sidebar-item-icon fa fa-user-plus" aria-hidden="true"></i>
+            <span class="nav-label">Cadastradar Alunos</span>
+        </a>
+    </li>-->
+    <li>
+        <a href="/ead/adm/aulas" id="link_aulas"><i class="sidebar-item-icon fa fa-video-camera" aria-hidden="true"></i>
+            <span class="nav-label">Aulas Cadastradas</span>
+        </a>
+    </li>
+    <!--
+    <li>
+        <a href="" id="link_add_aulas"><i class="sidebar-item-icon fa fa-video-camera" aria-hidden="true"></i>
+            <span class="nav-label">Cadastrar Aulas</span>
+        </a>
+    </li>
+    <li>
+        <a href="" id="link_add_user"><i class="sidebar-item-icon fa fa-user" aria-hidden="true"></i>
+            <span class="nav-label">Cadastrar Usuários</span>
+        </a>
+    </li>-->
+    <!--<li>
+        <a href="" id="link_modalidade"><i class="sidebar-item-icon fa fa-server" aria-hidden="true"></i>
+            <span class="nav-label">Modalidades </span>
+        </a>
+    </li>-->
+    <li>
+        <a href="" id="link_modalidade"><i class="sidebar-item-icon fa fa-server" aria-hidden="true"></i>
+            <span class="nav-label">Núcleo </span>
+        </a>
+    </li>
+<!--
+    <li>
+        <a href="" id="link_cadContas_pagar"><i class="sidebar-item-icon fa fa-money" aria-hidden="true"></i>
+            <span class="nav-label">Contas a Pagar </span>
+        </a>
+    </li>
+
+    <li>
+        <a href="" id="link_modalidade"><i class="sidebar-item-icon fa fa-money" aria-hidden="true"></i>
+            <span class="nav-label">Contas a Receber </span>
+        </a>
+    </li>
+-->
+    <li>
+        <a href="/loginv2"><i class="sidebar-item-icon fa fa-power-off" aria-hidden="true"></i>
+            <span class="nav-label">Sair</span>
+        </a>
+    </li>
+</ul>
+
+<script>
+
+    function getCookie(name) {
+        let cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            let [cookieName, cookieValue] = cookie.split("=");
+            if (cookieName === name) {
+                return cookieValue;
+            }
+        }
+        return null;
+    }
+
+        let a_principal = document.querySelector("#link_principal");
+        a_principal.href = "/adm/principal/"+ getCookie("user");
+
+        let a_alunos = document.querySelector("#link_alunos");
+        a_alunos.href = "/adm/alunos/"+ getCookie("user");
+
+        let a_add_alunos = document.querySelector("#link_add_alunos");
+        a_add_alunos.href = "/adm/addAluno/"+ getCookie("user");
+
+        let a_aulas = document.querySelector("#link_aulas");
+        a_aulas.href = "/adm/aulas/"+ getCookie("user");
+
+        let a_add_aulas = document.querySelector("#link_add_aulas");
+        a_add_aulas.href = "/adm/addAulas/"+ getCookie("user");
+
+        let a_add_user = document.querySelector("#link_add_user");
+        a_add_user.href = "/adm/addUser/"+ getCookie("user");
+
+
+        let a_modalidade = document.querySelector("#link_modalidade");
+        a_modalidade.href = "/adm/modalidade/"+ getCookie("user");
+
+
+        let a_alunos_1_basico = document.querySelector("#link_alunos_1_basico");
+        a_alunos_1_basico.href = "/adm/alunos_1_basico/"+ getCookie("user");
+
+        let a_alunos_2_basico = document.querySelector("#link_alunos_2_basico");
+        a_alunos_2_basico.href = "/adm/alunos_2_basico/"+ getCookie("user");
+
+        let a_alunos_medio = document.querySelector("#link_alunos_medio");
+        a_alunos_medio.href = "/adm/alunos_medio/"+ getCookie("user");
+        
+
+
+        let a_cad_contas_pagar = document.querySelector("#link_cadContas_pagar");
+        a_cad_contas_pagar.href = "/adm/contasPagar/"+ getCookie("user");
+
+
+</script>

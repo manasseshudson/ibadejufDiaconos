@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>IBADEJUF</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/Login_v18/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/Login_v18/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/Login_v18/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/Login_v18/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/Login_v18/css/main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form action="/res_senha" id="loginForm" method="post" class="login100-form validate-form">
+					<span class="login100-form-title p-b-43">
+						Informe seus Dados
+					</span>
+					<div class="form-group first">
+						<label for="username">CPF</label>
+						<input type="text" class="form-control" placeholder="" id="cpf" name="cpf">
+					</div>
+					<div class="form-group first">
+						<label for="username">DATA NASCIMENTO</label>
+						<input type="text" class="form-control" placeholder="" id="nascimento" name="nascimento">
+					</div>
+					<!--
+					<div class="form-group first">
+						<label for="username">Email</label>
+						<input type="text" class="form-control" placeholder="" id="email" name="email">
+					</div>-->
+					<div class="form-group first">
+						<label for="username">Senha</label>
+						<input type="Password" class="form-control" placeholder="*********" id="senha" name="senha">
+					</div>
+					<div class="form-group first">
+						<label for="username">Repetir a Senha</label>
+						<input type="Password" class="form-control" placeholder="*********" id="contra_senha" name="contra_senha">
+					</div>
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						<div>
+							<a href="/loginv2" class="txt1">
+								Voltar
+							</a>
+						</div>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Trocar a Senha
+						</button>
+					</div>
+				</form>
+				<div class="login100-more" style="background-image: url('/Login_v18/bg.jpg');"></div>
+			</div>
+		</div>
+	</div>
+	<% if(abrir_aviso==true){ %>
+        <script>
+           swal("<%= mensagem_modal %>", {
+                buttons: false,
+                timer: "<%= tempo_modal %>",
+            });
+        </script>
+    <% } %>
+	<script src="/Login_v18/vendor/jquery/jquery-3.2.1.min.js"></script>
+	
+	<script src="/Login_v18/vendor/bootstrap/js/popper.js"></script>
+	<script src="/Login_v18/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/Login_v18/vendor/select2/select2.min.js"></script>
+	<script src="/Login_v18/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#cpf').mask('000.000.000-00');
+			$("#nascimento").mask("00/00/0000");
+		})
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDash - Dashboard de Cursos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-white border-r border-gray-200">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">E</span>
+                        </div>
+                        <span class="ml-3 text-xl font-semibold text-gray-900">EduDash</span>
+                    </div>
+                    <div class="mt-5 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="#" class="bg-indigo-100 text-indigo-700 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="home" class="mr-3 h-5 w-5"></i>
+                                Dashboard
+                            </a>
+                            <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="book-open" class="mr-3 h-5 w-5"></i>
+                                Meus Cursos
+                            </a>
+                            <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="calendar" class="mr-3 h-5 w-5"></i>
+                                Cronograma
+                            </a>
+                            <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="award" class="mr-3 h-5 w-5"></i>
+                                Certificados
+                            </a>
+                            <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="users" class="mr-3 h-5 w-5"></i>
+                                Comunidade
+                            </a>
+                            <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i data-feather="settings" class="mr-3 h-5 w-5"></i>
+                                Configurações
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top navigation -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow border-b border-gray-200">
+                <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
+                    <i data-feather="menu" class="h-6 w-6"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-end">
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <i data-feather="bell" class="h-6 w-6"></i>
+                        </button>
+                        <div class="ml-3 relative">
+                            <div class="flex items-center">
+                                <i data-feather="user" class="h-5 w-5 text-gray-600 mr-2"></i>
+                                <span class="text-gray-700 text-sm font-medium">Manassés Hudson</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <!-- Page header -->
+                        <div class="mb-8">
+                            <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+                            <p class="mt-1 text-sm text-gray-600">Acompanhe seu progresso e continue aprendendo</p>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
+                            <div class="bg-white overflow-hidden shadow rounded-lg card-hover">
+                                <div class="p-5">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
+                                                <i data-feather="book-open" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">Cursos Ativos</dt>
+                                                <dd class="text-lg font-medium text-gray-900">6</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white overflow-hidden shadow rounded-lg card-hover">
+                                <div class="p-5">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
+                                                <i data-feather="check-circle" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">Completados</dt>
+                                                <dd class="text-lg font-medium text-gray-900">12</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white overflow-hidden shadow rounded-lg card-hover">
+                                <div class="p-5">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-8 h-8 bg-yellow-500 rounded-md flex items-center justify-center">
+                                                <i data-feather="clock" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm font-medium text-gray-500 truncate">Horas de Estudo</dt>
+                                                <dd class="text-lg font-medium text-gray-900">124h</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Section -->
+                        <div class="mb-8">
+                            <div>
+                                <div class="bg-white shadow rounded-lg">
+                                    <div class="px-6 py-4 border-b border-gray-200">
+                                        <h3 class="text-lg font-medium text-gray-900">Cursos em Andamento</h3>
+                                    </div>
+                                    <div class="p-6 space-y-6">
+                                        <!-- Course 1 -->
+                                        <div class="flex items-center space-x-4">
+                                            <img src="keys/react-course?prompt=React%20logo%20modern%20course%20thumbnail" alt="React Course" class="w-16 h-16 rounded-lg object-cover">
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-900">React Avançado</h4>
+                                                <p class="text-sm text-gray-500">Desenvolvimento Frontend</p>
+                                                <div class="mt-2">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                            <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                                                        </div>
+                                                        <span class="ml-3 text-sm text-gray-600">75%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200">
+                                                Continuar
+                                            </button>
+                                        </div>
+
+                                        <!-- Course 2 -->
+                                        <div class="flex items-center space-x-4">
+                                            <img src="keys/python-course?prompt=Python%20programming%20course%20thumbnail" alt="Python Course" class="w-16 h-16 rounded-lg object-cover">
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-900">Python para Data Science</h4>
+                                                <p class="text-sm text-gray-500">Ciência de Dados</p>
+                                                <div class="mt-2">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                            <div class="bg-green-600 h-2 rounded-full" style="width: 45%"></div>
+                                                        </div>
+                                                        <span class="ml-3 text-sm text-gray-600">45%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="px-4 py-2 text-sm font-medium text-green-600 bg-green-100 rounded-md hover:bg-green-200">
+                                                Continuar
+                                            </button>
+                                        </div>
+
+                                        <!-- Course 3 -->
+                                        <div class="flex items-center space-x-4">
+                                            <img src="keys/ux-course?prompt=UX%20design%20course%20thumbnail%20modern" alt="UX Course" class="w-16 h-16 rounded-lg object-cover">
+                                            <div class="flex-1">
+                                                <h4 class="text-sm font-medium text-gray-900">UX/UI Design</h4>
+                                                <p class="text-sm text-gray-500">Design de Interface</p>
+                                                <div class="mt-2">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                            <div class="bg-purple-600 h-2 rounded-full" style="width: 30%"></div>
+                                                        </div>
+                                                        <span class="ml-3 text-sm text-gray-600">30%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="px-4 py-2 text-sm font-medium text-purple-600 bg-purple-100 rounded-md hover:bg-purple-200">
+                                                Continuar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Recommended Courses -->
+                        <div class="bg-white shadow rounded-lg">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h3 class="text-lg font-medium text-gray-900">Cursos Recomendados</h3>
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <!-- Recommended Course 1 -->
+                                    <div class="border border-gray-200 rounded-lg overflow-hidden card-hover">
+                                        <img src="keys/node-course?prompt=Node.js%20backend%20development%20course%20cover" alt="Node.js Course" class="w-full h-32 object-cover">
+                                        <div class="p-4">
+                                            <h4 class="font-medium text-gray-900 mb-2">Node.js Backend</h4>
+                                            <p class="text-sm text-gray-600 mb-3">Desenvolvimento de APIs e servidores</p>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-500">32 aulas</span>
+                                                <button class="px-3 py-1 text-xs font-medium text-blue-600 bg-blue-100 rounded-full hover:bg-blue-200">
+                                                    Iniciar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Recommended Course 2 -->
+                                    <div class="border border-gray-200 rounded-lg overflow-hidden card-hover">
+                                        <img src="keys/docker-course?prompt=Docker%20containers%20DevOps%20course%20thumbnail" alt="Docker Course" class="w-full h-32 object-cover">
+                                        <div class="p-4">
+                                            <h4 class="font-medium text-gray-900 mb-2">Docker & DevOps</h4>
+                                            <p class="text-sm text-gray-600 mb-3">Containerização e deploy</p>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-500">28 aulas</span>
+                                                <button class="px-3 py-1 text-xs font-medium text-green-600 bg-green-100 rounded-full hover:bg-green-200">
+                                                    Iniciar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Recommended Course 3 -->
+                                    <div class="border border-gray-200 rounded-lg overflow-hidden card-hover">
+                                        <img src="keys/ai-course?prompt=Artificial%20Intelligence%20machine%20learning%20course%20cover" alt="AI Course" class="w-full h-32 object-cover">
+                                        <div class="p-4">
+                                            <h4 class="font-medium text-gray-900 mb-2">IA & Machine Learning</h4>
+                                            <p class="text-sm text-gray-600 mb-3">Inteligência artificial prática</p>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-500">45 aulas</span>
+                                                <button class="px-3 py-1 text-xs font-medium text-purple-600 bg-purple-100 rounded-full hover:bg-purple-200">
+                                                    Iniciar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        // Initialize Feather icons
+        feather.replace();
+
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('[data-feather="menu"]')?.parentElement;
+            const sidebar = document.querySelector('.md\\:flex');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('hidden');
+                });
+            }
+
+
+
+            // Continue button interactions
+            const allButtons = document.querySelectorAll('button');
+            allButtons.forEach(button => {
+                if (button.textContent.trim() === 'Continuar') {
+                    button.addEventListener('click', function() {
+                        const courseName = this.parentElement.querySelector('h4').textContent;
+                        alert(`Continuando com o curso: ${courseName}`);
+                    });
+                }
+                
+                if (button.textContent.trim() === 'Iniciar') {
+                    button.addEventListener('click', function() {
+                        const courseName = this.parentElement.parentElement.querySelector('h4').textContent;
+                        alert(`Iniciando curso: ${courseName}`);
+                    });
+                }
+            });
+
+            // Notification bell
+            const notificationBell = document.querySelector('[data-feather="bell"]')?.parentElement;
+            if (notificationBell) {
+                notificationBell.addEventListener('click', function() {
+                    alert('Você não tem novas notificações');
+                });
+            }
+
+            // Animate progress bars on load
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.bg-blue-600, .bg-green-600, .bg-purple-600');
+                progressBars.forEach(bar => {
+                    bar.style.transition = 'width 1s ease-in-out';
+                });
+            }, 500);
+
+            // Add click handlers for sidebar navigation
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => {
+                        l.classList.remove('bg-indigo-100', 'text-indigo-700');
+                        l.classList.add('text-gray-600');
+                    });
+                    
+                    // Add active class to clicked link
+                    this.classList.add('bg-indigo-100', 'text-indigo-700');
+                    this.classList.remove('text-gray-600');
+                    
+                    const pageName = this.textContent.trim();
+                    console.log(`Navegando para: ${pageName}`);
+                });
+            });
+        });
+
+        // Utility functions
+        function addHoverEffects() {
+            const hoverElements = document.querySelectorAll('.card-hover');
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+        
+        // Initialize hover effects
+        addHoverEffects();
+    </script>
+</body>
+</html>

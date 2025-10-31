@@ -1,0 +1,393 @@
+pe html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title><%= title %></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/owl.theme.css">
+    <link rel="stylesheet" href="/css/owl.transitions.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/meanmenu.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/educate-custon-icon.css">
+    <link rel="stylesheet" href="/css/morrisjs/morris.css">
+    <link rel="stylesheet" href="/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="/css/metisMenu/metisMenu-vertical.css">
+    <link rel="stylesheet" href="/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="/css/calendar/fullcalendar.print.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+	<style>
+		ul.two-part-sp li {
+		  display: inline-block;
+		  width: 35%;
+		  font-size: 16px;
+		  font-weight: 700;
+		}
+		.container-fluid .jumbotron {
+			padding-right: 47px;
+			padding-left: 0px;
+		  }
+	</style>
+	   <style>
+        /* Estilo para a página de fundo */
+        
+
+        /* Estilo para o overlay (fundo escuro) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Estilo para o popup */
+        .popup {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 80%;
+            position: relative;
+        }
+
+        /* Estilo para o botão de fechar */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        /* Estilo para o conteúdo do popup */
+        .popup-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .popup-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .popup-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .popup-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+	<script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
+    
+
+</head>
+
+<body>
+  
+    <!-- Start Left menu area -->
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <%- include('./../partials/sidebar_aluno.ejs') %>
+        </nav>
+    </div>
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+													<i class="educate-icon educate-nav"></i>
+												</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu start -->
+			<%- include('./../partials/mobile_menu_aluno.ejs') %>
+            <!-- Mobile Menu end -->
+			
+			
+            <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading" style="margin-top: 15px;font-size: 18px;font-weight: bold;" id="aluno">
+                                            Olá <%= user %> seja bem vindo
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="analytics-sparkle-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="qtde_materias_disponiveis">
+                        <div class="analytics-sparkle-line reso-mg-b-30">
+                            <div class="analytics-content">
+                                <h5>Matérias Disponíveis</h5>
+                                <h2><span class="counter"><%= qtdeMateriasDisponiveis %></span> <span class="tuition-fees">Matérias</span></h2>
+                                <!--<span class="text-success">20%</span>-->
+                                <div class="progress m-b-0">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">100% Complete</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="aulas_disponiveis">
+                        <div class="analytics-sparkle-line reso-mg-b-30">
+                            <div class="analytics-content">
+                                <h5>Aulas Disponíveis</h5>
+                                <h2><span class="counter"><%= qtdeAulasDisponiveis %></span> <span class="tuition-fees">Aulas</span></h2>
+                                <!--<span class="text-danger">30%</span>-->
+                                <div class="progress m-b-0">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">230% Complete</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="aulas_assistidas">
+                        <div class="analytics-sparkle-line reso-mg-b-30 table-mg-t-pro dk-res-t-pro-30">
+                            <div class="analytics-content">
+                                <h5>Aulas Assistidas</h5>
+                                <h2><span class="counter"><%= qtdeAulasAssistidas %></span> <span class="tuition-fees">Aulas</span></h2>
+                                <!--<span class="text-info">60%</span>-->
+                                <div class="progress m-b-0">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">20% Complete</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+					
+					
+                </div>
+				
+				<div class="row" style="margin-top:15px" id="propaganda">
+					<div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+						<div class="jumbotron">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<img src="https://campustechnology.com/-/media/EDU/CampusTechnology/2021-images/20210121collegestudents.jpg" style="border-radius: 15px;">
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h4 style="font-size: 35px;">CURSO DE DIÁCONOS E AUXILIARES</h4>
+								<!--<p>CURSO BÁSICO + MÉDIO EM TEOLOGIA</p>-->
+								<!--<p>Agora com uma nova e exclusiva metodologia na qual você aprende muito mais e conquista o seu Diploma estudando 100% Online​</>-->
+
+							</div>
+							<div class="container">
+								
+								
+							</div>
+						</div>
+					</div>	
+				
+				</div>
+            </div>
+        </div>
+		
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+					<!--
+					<h2 style="margin: 15px;">Matérias Disponíveis</h2>
+					<% materia.forEach(materias=>{ %>
+						<a href="/user/aulas_materia/<%= materias.id_materia %>/<%= uid_usuario %>">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<div class="white-box analytics-info-cs mg-b-10 res-mg-b-30 res-mg-t-30 table-mg-t-pro-n tb-sm-res-d-n dk-res-t-d-n" style="border: 2px solid #006DF0;border-radius: 13px;">
+									<h3 class="box-title"></h3>
+									
+									<ul class="list-inline two-part-sp">
+										<li>
+											<img src="/img/materias.png"/ style="width: 90px;height: 90px;">
+										</li>
+										<li class="text-right sp-cn-r" style="margin-left: 15px;width: 50%;">
+											<%= materias.descricao %>
+										</li>
+									</ul>
+								</div>                       
+							</div>
+						</a>
+                    <% }) %>
+					-->
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+		
+    </div>
+	<div class="overlay" id="popupOverlay">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            
+            <div class="popup-content">
+                <h2>Bem-vindo!</h2>
+                <p>Estamos disponabilizando uma pesquisa interna de alunos.</p>
+                <p>poderia nos ajudar com apenas 2 minutos de sua atenção?</p>
+				<p>Basta apenas <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTfoQsBB9R18ElVOoUtQvsFD7e4DVtJ8HqiDR_31O5koo_eA/viewform?usp=dialog" style="color: red;">CLICAR AQUI </a>que você será direcionado..</p>
+                
+                <button class="popup-button" onclick="closePopup()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+		============================================ -->
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/jquery-price-slider.js"></script>
+    <script src="/js/jquery.meanmenu.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <script src="/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/js/counterup/waypoints.min.js"></script>
+    <script src="/js/counterup/counterup-active.js"></script>
+    <script src="/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <script src="/js/metisMenu/metisMenu.min.js"></script>
+    <script src="/js/metisMenu/metisMenu-active.js"></script>
+    <script src="/js/morrisjs/raphael-min.js"></script>
+    <script src="/js/morrisjs/morris.js"></script>
+    <script src="/js/morrisjs/morris-active.js"></script>
+    <script src="/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="/js/sparkline/sparkline-active.js"></script>
+    <script src="/js/calendar/moment.min.js"></script>
+    <script src="/js/calendar/fullcalendar.min.js"></script>
+    <script src="/js/calendar/fullcalendar-active.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+		/*const driver = window.driver.js.driver;
+		const driverObj = driver({
+			showProgress: true,
+			steps: [
+				{ element: '#aluno', popover: { title: 'Boas Vindas', description: 'Olá agora você será direcoinado a um tutorial de como funciona a plataforma. Caso queria terimar o tutorial antes de chegar ao fim.. basta prescionar a tecla ESC de seu teclado.', side: "left", align: 'start' }},
+				{ element: '#menu_principal', popover: { title: 'Menu Principal', description: 'Onde Você vê as informações principais da plataforma.', side: "left", align: 'start' }},
+				{ element: '#menu_materias', popover: { title: 'Menu Matérias', description: 'Aqui você vai encontrar todas as materias liberadas para você estudar.', side: "bottom", align: 'start' }},
+				{ element: '#menu_dados_pessoais', popover: { title: 'Menu Dados Pessoais', description: 'Aqui você consegue ver os dados cadastrais e ate mesmo alterar caso precise..', side: "bottom", align: 'start' }},
+				{ element: '#menu_sair', popover: { title: 'Menu Sair', description: 'Clicando aqui você sai da plataforma', side: "bottom", align: 'start' }},
+				{ element: '#qtde_materias_disponiveis', popover: { title: 'Matérias Disponíveis', description: 'Aqui você fica sabendo a quantidade de matérias disponivies pra você.', side: "bottom", align: 'start' }},
+				{ element: '#aulas_disponiveis', popover: { title: 'Aulas Disponíveis', description: 'Aqui você fica sabendo a quantidade de Aulas disponivies para você.', side: "bottom", align: 'start' }},
+				{ element: '#aulas_assistidas', popover: { title: 'Aulas Assitidas', description: 'Aqui você fica sabendo a quantidade de Aulas que você já assistiu.', side: "bottom", align: 'start' }},
+				{ element: '#propaganda', popover: { title: 'Anúncios', description: 'Aqui você fica sabendo a quantidade de Aulas que você já assistiu.', side: "bottom", align: 'start' }}
+			],
+			onDestroyStarted: () => {
+				if (!driverObj.hasNextStep() || confirm("Deseja cancelar o tutorial?")) {
+				  driverObj.destroy();
+				}
+			  },
+		});
+		*/
+		//driverObj.drive();
+	</script>
+	<script>
+        // Função para abrir o popup
+        function openPopup() {
+            document.getElementById('popupOverlay').style.display = 'flex';
+        }
+        
+        // Função para fechar o popup
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+        
+        // Configuração para abrir o popup automaticamente após a página carregar
+        // O timeout de 500ms dá uma pequena pausa para melhorar a experiência do usuário
+        window.onload = function() {
+            setTimeout(function() {
+                //openPopup();
+				
+            }, 500);
+        };
+    </script>
+</body>
+
+</html>

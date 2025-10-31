@@ -1,0 +1,96 @@
+<div class="sidebar-header">
+	<a href="/adm/principal/<%= uid_usuario %>"><img class="main-logo" src="/img/logo/logoDiaconos.png" alt="" /></a>
+	<strong><a href="index.html"><img src="/img/logo/logosn.png" alt="" /></a></strong>
+</div>
+<div class="left-custom-menu-adp-wrap comment-scrollbar">
+	<nav class="sidebar-nav left-sidebar-menu-pro">
+		<ul class="metismenu" id="menu1">
+			<li>
+				<a title="Landing Page" href="/admNucleo/principal/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<span class="educate-icon educate-home icon-wrap"></span>
+					<span class="mini-click-non">Principal</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/admNucleo/alunos_aniversariantes_mes/<%= uid_usuario %>/0"
+					aria-expanded="false" id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px;">Aniversariantes</span></a>
+			</li>
+
+
+			<li>
+				<a class="has-arrow" href="">
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+					<span class="mini-click-non">Núcleos</span>
+				</a>
+				<ul class="submenu-angle" aria-expanded="true">
+					<% nucleos.forEach(nucleos=> { %>
+					<li><a href="/admNucleo/alunos_nucleo/<%= uid_usuario %>/<%= nucleos.id_nucleo %>"><span
+								class="mini-sub-pro"><%= nucleos.descricao %></span></a></li>
+					<% }) %>
+				</ul>
+			</li>
+			 <li>
+				<a title="Landing Page" href="/admNucleo/alunos/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px">Alunos</span></a>
+			</li>
+<!--			<li>
+				<a class="has-arrow" href="">
+					<i class="fa fa-certificate" aria-hidden="true"></i>
+					<span class="mini-click-non">Alunos</span>
+				</a>
+				<ul class="submenu-angle" aria-expanded="true">
+
+					<li><a href="/admNucleo/alunos/<%= uid_usuario %>" <span class="mini-sub-pro">Todos</span></a></li>
+					<li><a href="/admNucleo/alunos_1_basico/<%= uid_usuario %>"><span class="mini-sub-pro">1º Ano</span></a>
+					</li>
+					<li><a href="/admNucleo/alunos_2_basico/<%= uid_usuario %>"><span class="mini-sub-pro">2º Ano</span></a>
+					</li>
+					<li><a href="/admNucleo/alunos_medio/<%= uid_usuario %>"><span class="mini-sub-pro">Médio</span></a></li>
+
+				</ul>
+			</li>
+	-->		
+
+			<li>
+				<a title="Landing Page" href="/admNucleo/addMaterias/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+					<span class="mini-click-non" style="margin-left:10px;">Matérias</span></a>
+			</li>
+
+			<li>
+				<a title="Landing Page" href="/admNucleo/addAulas/<%= uid_usuario %>" aria-expanded="false"
+					id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-video-camera" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px;">Aulas</span></a>
+			</li>
+
+
+
+			<li>
+				<a title="Landing Page" href="/loginv2" aria-expanded="false" id="link_principal">
+					<!--<span class="educate-icon educate-home icon-wrap"></span>-->
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+
+					<span class="mini-click-non" style="margin-left:10px">Sair</span></a>
+			</li>
+
+			
+		</ul>
+	</nav>
+</div>
+<script>
+
+
+</script>

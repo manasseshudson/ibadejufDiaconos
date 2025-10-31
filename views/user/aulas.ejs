@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matérias Disponíveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 overflow-x-hidden">
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden fixed top-4 left-4 z-60 bg-white p-2 rounded-lg shadow-lg border border-gray-200">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-2xl z-50 border-r border-gray-200 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-gray-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5,3H7V5H21V7H7V9H19V11H7V13H21V15H7V17H19V19H7V21H5V3M3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3H5A2,2 0 0,0 3,5Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-blue-600">IBADEJUF</h1>
+                    <p class="text-xs text-gray-500">Instituto Bíblico</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <!-- Navigation Menu -->
+        <nav class="p-4 space-y-2">
+            <!-- Principal -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Principal</span>
+            </a>
+
+            <!-- Matérias -->
+            <!--<a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group">-->
+			<a href="#" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">            
+			<div class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 19H5V5H19V19M17 17H7V15H17V17M17 13H7V11H17V13M17 9H7V7H17V9Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Matérias</span>
+            </a>
+
+            <!-- Dados Pessoais -->
+            <!--<a href="#" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">-->
+			<a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-blue-500">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Dados Pessoais</span>
+            </a>
+
+            <!-- Sair -->
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200 group">
+                <div class="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </div>
+                <span class="font-medium">Sair</span>
+            </a>
+        </nav>
+
+        <!-- User Info at Bottom -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 bg-gray-50">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                    MH
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">Manassés Hudson</p>
+                    <p class="text-xs text-gray-500">Estudante</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content with responsive margin -->
+    <div class="md:ml-64 flex-1 px-4 md:px-6 py-12 pt-20 md:pt-12 overflow-x-hidden">
+        <!-- Header Section -->
+        <div class="text-center mb-12 md:mb-16 animate-fade-in-up max-w-full">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 px-2">
+                Matérias Disponíveis
+            </h1>
+            <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto px-4">
+                Explore nossa coleção de disciplinas teológicas e bíblicas cuidadosamente organizadas para seu crescimento espiritual e acadêmico.
+            </p>
+            <div class="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- Grid de Matérias -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 justify-items-center max-w-4xl mx-auto px-2">
+            <!-- Bibliologia -->
+			<% materia.forEach(materias=>{ %>
+				<div class="card-hover bg-white rounded-2xl shadow-lg hover:shadow-2xl p-4 md:p-6 border border-gray-100 animate-scale-in w-full max-w-xs mx-auto" style="animation-delay: 0.1s">
+					<div class="flex flex-col items-center text-center space-y-4">
+						<div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+							<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+							</svg>
+						</div>
+						<a href="/user/player/<%= materias.id_materia %>/<%= uid_usuario %>">
+							<h3 class="text-xl font-semibold text-gray-800"><%= materias.descricao %> </h3>
+						</a>
+					</div>
+				</div>			
+			<% }) %>
+           
+
+           
+        </div>
+
+        <!-- Footer Section -->
+        <div class="text-center mt-16 animate-fade-in-up" style="animation-delay: 1s">
+            <p class="text-gray-500 text-sm">
+                Selecione uma matéria para começar seus estudos
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Adicionar interatividade aos cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-hover');
+            /*
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('h3').textContent;
+                    
+                    // Efeito de clique
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                    
+                    // Simular navegação (você pode substituir por sua lógica)
+                    setTimeout(() => {
+                        alert(`Navegando para: ${title}`);
+                    }, 200);
+                });
+                
+                // Efeito de hover nos ícones
+                const icon = card.querySelector('div[class*="bg-gradient"]');
+                card.addEventListener('mouseenter', () => {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });*/
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Close sidebar when clicking menu items on mobile
+        const navLinks = document.querySelectorAll('#sidebar nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+        });
+
+        // Sidebar navigation functionality
+        // Sidebar navigation functionality
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const linkText = this.querySelector('span').textContent;
+                
+                // Handle specific actions based on clicked item
+                if (linkText === 'Sair') {
+                    if (confirm('Deseja realmente sair do sistema?')) {
+                        //alert('🔐 Saindo do sistema IBADEJUF...\n\nObrigado por usar nosso sistema!');
+                        // Aqui você poderia redirecionar para página de login
+                        window.location.href = '/loginv2';
+                    }
+                    return; // Don't change active state for logout
+                }
+                
+                // Remove active state from all links
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-blue-50', 'text-blue-600', 'border', 'border-blue-100', 'shadow-sm');
+                    l.classList.add('text-gray-600', 'hover:bg-blue-50', 'hover:text-blue-600');
+                });
+                
+                // Add active state to clicked link
+                this.classList.remove('text-gray-600', 'hover:bg-blue-50', 'hover:text-blue-600');
+                this.classList.add('bg-blue-50', 'text-blue-600', 'border', 'border-blue-100', 'shadow-sm');
+                
+                // Show specific alerts for each menu item
+                switch(linkText) {
+                    case 'Principal':
+                        //alert('🏠 Navegando para PÁGINA PRINCIPAL\n\nVocê será redirecionado para o dashboard principal do sistema.');
+						window.location.href = "/user/principal/<%= uid_usuario %>";
+                        break;
+                    case 'Matérias':
+                        //alert('📚 Navegando para MATÉRIAS DISPONÍVEIS\n\nVocê verá todas as disciplinas teológicas disponíveis para estudo.');
+						window.location.href = "/user/materias/<%= uid_usuario %>";
+                        break;
+                    case 'Dados Pessoais':
+                        //alert('👤 Você já está na página DADOS PESSOAIS\n\nAqui você pode atualizar suas informações pessoais.');
+						window.location.href = "/user/profile/<%= uid_usuario %>";
+                        break;
+                    default:
+                        alert(`📌 Item selecionado: ${linkText}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
